@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روابطي | iOS 27 Edition</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts (Tajawal for futuristic Apple Arabic UI) -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '2.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            transition: background 0.6s ease, color 0.4s ease;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Dynamic Animated Background Mesh */
+        .ios-bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.55;
+            z-index: 0;
+            pointer-events: none;
+            animation: orbFloat 18s infinite alternate ease-in-out;
+        }
+
+        .orb-1 { width: 380px; height: 380px; top: -100px; right: -80px; background: #8b5cf6; }
+        .orb-2 { width: 340px; height: 340px; bottom: -80px; left: -60px; background: #06b6d4; }
+        .orb-3 { width: 280px; height: 280px; top: 40%; left: 30%; background: #ec4899; animation-delay: -7s; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.15); }
+            100% { transform: translate(-40px, 80px) scale(0.95); }
+        }
+
+        /* iOS 27 Liquid Glassmorphism Cards */
+        .glass-ios {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-ios-modal {
+            background: rgba(18, 18, 28, 0.82);
+            backdrop-filter: blur(35px) saturate(210%);
+            -webkit-backdrop-filter: blur(35px) saturate(210%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Theme Styles */
+        /* Theme 1: iOS Dark Glass */
+        .theme-dark-glass {
+            background-color: #0b0f19;
+            color: #ffffff;
+        }
+        
+        /* Theme 2: Cyber Nebula */
+        .theme-cyber-nebula {
+            background-color: #050212;
+            color: #e0e7ff;
+        }
+        .theme-cyber-nebula .orb-1 { background: #d946ef; }
+        .theme-cyber-nebula .orb-2 { background: #3b82f6; }
+        .theme-cyber-nebula .orb-3 { background: #10b981; }
+
+        /* Theme 3: Golden Hour */
+        .theme-golden-hour {
+            background-color: #1a0c02;
+            color: #fff7ed;
+        }
+        .theme-golden-hour .orb-1 { background: #f97316; }
+        .theme-golden-hour .orb-2 { background: #eab308; }
+        .theme-golden-hour .orb-3 { background: #ef4444; }
+
+        /* Theme 4: Emerald Crystal */
+        .theme-emerald-crystal {
+            background-color: #021a12;
+            color: #ecfdf5;
+        }
+        .theme-emerald-crystal .orb-1 { background: #10b981; }
+        .theme-emerald-crystal .orb-2 { background: #06b6d4; }
+        .theme-emerald-crystal .orb-3 { background: #84cc16; }
+
+        /* Button Style Variants */
+        /* Style 1: Liquid Glass (Default) */
+        .btn-style-glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        .btn-style-glass:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Style 2: Neon Glow */
+        .btn-style-neon {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+        }
+        .btn-style-neon:hover {
+            border-color: rgba(56, 189, 248, 1);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Style 3: Minimalist Solid */
+        .btn-style-minimal {
+            background: rgba(255, 255, 255, 0.92);
+            color: #0f172a !important;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .btn-style-minimal:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="theme-dark-glass min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 relative select-none">
+
+    <!-- Background Dynamic Orbs -->
+    <div class="ios-bg-orb orb-1"></div>
+    <div class="ios-bg-orb orb-2"></div>
+    <div class="ios-bg-orb orb-3"></div>
+
+    <!-- Top Navigation Control Bar -->
+    <header class="w-full max-w-md flex items-center justify-between p-3.5 rounded-3xl glass-ios z-40 mb-6">
+        <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-xs font-semibold tracking-wide text-slate-200">iOS 27 Linktree</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+            <!-- Edit Dashboard Button -->
+            <button onclick="toggleDashboard()" class="px-3.5 py-1.5 rounded-2xl bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-bold transition flex items-center gap-1.5 border border-white/15">
+                <i class="fa-solid fa-sliders text-cyan-400"></i>
+                <span id="editBtnLabel">لوحة التحكم</span>
+            </button>
+
+            <!-- Share Profile Button -->
+            <button onclick="shareProfile()" class="w-8 h-8 rounded-2xl bg-white/10 hover:bg-white/20 active:scale-95 text-xs font-bold transition flex items-center justify-center border border-white/15" title="مشاركة الملف">
+                <i class="fa-solid fa-arrow-up-from-bracket text-emerald-300"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Linktree App Container -->
+    <main class="w-full max-w-md flex flex-col items-center flex-grow z-10">
+        
+        <!-- Profile Header Widget -->
+        <div class="flex flex-col items-center text-center w-full mb-8">
+            <div class="relative group">
+                <!-- Profile Image with Holographic Glow -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-md opacity-70 group-hover:opacity-100 transition duration-500"></div>
+                <img id="profileImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="الملف الشخصي" class="relative w-28 h-28 rounded-full object-cover border-2 border-white/40 shadow-2xl transition duration-500 group-hover:scale-105">
+                <div class="absolute bottom-1 left-1 bg-cyan-400 text-slate-950 p-1.5 rounded-full text-[10px] font-black border-2 border-slate-900 shadow-lg" title="موثق">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+            </div>
+
+            <!-- Profile Info -->
+            <h1 id="profileName" class="text-2xl font-black mt-4 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300">سارة الأحمد</h1>
+            <p id="profileBio" class="text-xs sm:text-sm font-medium opacity-85 mt-2 max-w-xs leading-relaxed px-4">مهندسة برمجيات مصممة واجهات iOS 27  | أشارك بشغف أحدث الحلول الرقمية والتطبيقات المستقبلية ✨</p>
+
+            <!-- Social Media Floating Bar -->
+            <div id="socialBar" class="flex items-center justify-center gap-3 mt-5 px-4 py-2 rounded-2xl glass-ios">
+                <a id="soc-instagram" href="https://instagram.com" target="_blank" class="text-slate-300 hover:text-pink-400 text-lg transition transform hover:scale-125">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a id="soc-tiktok" href="https://tiktok.com" target="_blank" class="text-slate-300 hover:text-cyan-400 text-lg transition transform hover:scale-125">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a id="soc-youtube" href="https://youtube.com" target="_blank" class="text-slate-300 hover:text-red-400 text-lg transition transform hover:scale-125">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a id="soc-whatsapp" href="https://wa.me/" target="_blank" class="text-slate-300 hover:text-emerald-400 text-lg transition transform hover:scale-125">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a id="soc-x" href="https://x.com" target="_blank" class="text-slate-300 hover:text-sky-400 text-lg transition transform hover:scale-125">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Links View Container -->
+        <div id="linksContainer" class="w-full flex flex-col gap-3.5 mb-10">
+            <!-- Links Render Dynamically -->
+        </div>
+
+    </main>
+
+    <!-- Dashboard Modal Drawer -->
+    <div id="dashboardModal" class="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-400">
+        <div class="w-full max-w-md h-[88vh] rounded-t-5xl glass-ios-modal p-6 flex flex-col justify-between overflow-y-auto transform translate-y-full transition-transform duration-400">
+            
+            <div>
+                <!-- Top Modal Header -->
+                <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-cyan-400"></i>
+                        <h2 class="text-base font-bold text-white">لوحة تحكم iOS 27</h2>
+                    </div>
+                    <button onclick="toggleDashboard()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Tabs Menu -->
+                <div class="flex gap-2 my-4 p-1 rounded-2xl bg-black/30 border border-white/10 text-xs font-bold">
+                    <button id="tabBtn1" onclick="switchTab(1)" class="flex-1 py-2 rounded-xl bg-white/20 text-white transition">الملف الشخصي</button>
+                    <button id="tabBtn2" onclick="switchTab(2)" class="flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition">الروابط والإحصائيات</button>
+                    <button id="tabBtn3" onclick="switchTab(3)" class="flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition">الثيمات والتصميم</button>
+                </div>
+
+                <!-- TAB 1: Profile Customization -->
+                <div id="tabContent1" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">الاسم</label>
+                        <input type="text" id="inputName" oninput="saveAndRenderProfile()" class="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">الوصف الشخصي (Bio)</label>
+                        <textarea id="inputBio" oninput="saveAndRenderProfile()" rows="3" class="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-cyan-400"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">رابط صورة الملف الشخصي</label>
+                        <input type="text" id="inputImg" oninput="saveAndRenderProfile()" class="w-full p-3 rounded-2xl bg-white/5 border border-white/10 text-sm text-white focus:outline-none focus:border-cyan-400">
+                    </div>
+                </div>
+
+                <!-- TAB 2: Links Manager & Click Analytics -->
+                <div id="tabContent2" class="space-y-4 hidden">
+                    <!-- Add Link Form -->
+                    <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+                        <span class="text-xs font-bold text-emerald-400 block">إضافة رابط جديد</span>
+                        <input type="text" id="newTitle" placeholder="عنوان الرابط" class="w-full p-2.5 rounded-xl bg-black/40 border border-white/10 text-xs text-white focus:outline-none">
+                        <input type="text" id="newSub" placeholder="وصف توضيحي قصير" class="w-full p-2.5 rounded-xl bg-black/40 border border-white/10 text-xs text-white focus:outline-none">
+                        <input type="text" id="newUrl" placeholder="الرابط (https://...)" class="w-full p-2.5 rounded-xl bg-black/40 border border-white/10 text-xs text-white focus:outline-none">
+                        
+                        <div class="flex gap-2">
+                            <select id="newIcon" class="flex-1 p-2.5 rounded-xl bg-black/40 border border-white/10 text-xs text-white focus:outline-none">
+                                <option value="fa-solid fa-globe">🌐 موقع عام</option>
+                                <option value="fa-solid fa-bag-shopping">🛍️ متجر إلكتروني</option>
+                                <option value="fa-solid fa-code">💻 مشروع برمجيات</option>
+                                <option value="fa-solid fa-layer-group">🎨 معرض أعمال</option>
+                                <option value="fa-solid fa-circle-play">🎥 فيديو / بث</option>
+                                <option value="fa-solid fa-paper-plane">📩 تواصل خاص</option>
+                            </select>
+                            <button onclick="addLink()" class="px-4 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-xs flex items-center gap-1 transition">
+                                <i class="fa-solid fa-plus"></i> إضافة
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Manage Links List -->
+                    <div id="dashboardLinksList" class="space-y-2">
+                        <!-- Dynamic List Items -->
+                    </div>
+                </div>
+
+                <!-- TAB 3: iOS 27 Theme & Style Configurator -->
+                <div id="tabContent3" class="space-y-5 hidden">
+                    <!-- Theme Selector -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-2">ثيمات iOS 27 المستقبلية</label>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <button onclick="setTheme('theme-dark-glass')" class="p-3 rounded-2xl border border-white/15 bg-slate-900/80 text-xs font-bold text-right hover:border-cyan-400 transition">
+                                <span class="w-3 h-3 rounded-full bg-cyan-400 inline-block ml-1"></span> iOS Dark Glass
+                            </button>
+                            <button onclick="setTheme('theme-cyber-nebula')" class="p-3 rounded-2xl border border-white/15 bg-indigo-950/80 text-xs font-bold text-right hover:border-fuchsia-400 transition">
+                                <span class="w-3 h-3 rounded-full bg-fuchsia-400 inline-block ml-1"></span> Cyber Nebula
+                            </button>
+                            <button onclick="setTheme('theme-golden-hour')" class="p-3 rounded-2xl border border-white/15 bg-amber-950/80 text-xs font-bold text-right hover:border-amber-400 transition">
+                                <span class="w-3 h-3 rounded-full bg-amber-400 inline-block ml-1"></span> Golden Hour
+                            </button>
+                            <button onclick="setTheme('theme-emerald-crystal')" class="p-3 rounded-2xl border border-white/15 bg-emerald-950/80 text-xs font-bold text-right hover:border-emerald-400 transition">
+                                <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block ml-1"></span> Emerald Crystal
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Link Button Style Selector -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-2">نمط أزرار الروابط</label>
+                        <div class="space-y-2">
+                            <button onclick="setButtonStyle('btn-style-glass')" class="w-full p-3 rounded-2xl bg-white/10 border border-white/20 text-xs font-bold text-right flex items-center justify-between">
+                                <span>زجاج سائل Liquid Glass</span>
+                                <i class="fa-solid fa-circle-check text-cyan-400"></i>
+                            </button>
+                            <button onclick="setButtonStyle('btn-style-neon')" class="w-full p-3 rounded-2xl bg-slate-900 border border-cyan-400/50 text-xs font-bold text-right text-cyan-300 flex items-center justify-between">
+                                <span>توهج نيون Neon Glow</span>
+                                <i class="fa-solid fa-bolt text-cyan-400"></i>
+                            </button>
+                            <button onclick="setButtonStyle('btn-style-minimal')" class="w-full p-3 rounded-2xl bg-white text-slate-950 text-xs font-bold text-right flex items-center justify-between">
+                                <span>بسيط ودقيق Minimalist</span>
+                                <i class="fa-solid fa-sparkles text-slate-900"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button onclick="toggleDashboard()" class="w-full py-3.5 mt-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 font-extrabold text-sm text-slate-950 transition active:scale-98">
+                حفظ وإغلاق
+            </button>
+        </div>
+    </div>
+
+    <!-- iOS 27 Home Indicator Footer -->
+    <footer class="w-full max-w-md flex flex-col items-center gap-2 text-center text-[11px] opacity-70 z-10 my-2">
+        <p>مصمم بنمط <span class="font-bold text-cyan-300">iOS 27 OS</span> &copy; 2026</p>
+        <div class="w-32 h-1 bg-white/40 rounded-full mt-1"></div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 bg-slate-900/90 text-white border border-white/20 px-5 py-3 rounded-3xl shadow-2xl flex items-center gap-2.5 opacity-0 pointer-events-none transition-all duration-300 z-50 backdrop-blur-xl">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMsg" class="text-xs font-bold">تمت العملية بنجاح</span>
+    </div>
+
+    <script>
+        // Data State
+        let appData = {
+            profile: {
+                name: "سارة الأحمد",
+                bio: "مهندسة برمجيات مصممة واجهات iOS 27  | أشارك بشغف أحدث الحلول الرقمية والتطبيقات المستقبلية ✨",
+                img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80"
+            },
+            theme: "theme-dark-glass",
+            buttonStyle: "btn-style-glass",
+            links: [
+                {
+                    id: 101,
+                    title: "تطبيق iOS المستقبل - النسخة التجريبية",
+                    subtitle: "حمل النسخة التجريبية عبر TestFlight الآن",
+                    url: "https://apple.com",
+                    icon: "fa-solid fa-code",
+                    clicks: 142
+                },
+                {
+                    id: 102,
+                    title: "متجر التصاميم والمكعبات البرمجية",
+                    subtitle: "خصومات حصرية 30% على مكتبة مكونات UI",
+                    url: "https://example.com/store",
+                    icon: "fa-solid fa-bag-shopping",
+                    clicks: 89
+                },
+                {
+                    id: 103,
+                    title: "قناة اليوتيوب - دروس iOS 27",
+                    subtitle: "شاهد كيف تبني واجهات مستقبليّة باستخدام Glassmorphism",
+                    url: "https://youtube.com",
+                    icon: "fa-solid fa-circle-play",
+                    clicks: 215
+                }
+            ]
+        };
+
+        let isDashboardOpen = false;
+
+        // Initialize App
+        window.onload = function() {
+            renderProfile();
+            renderLinks();
+            populateFormInputs();
+        };
+
+        // Render Profile Header
+        function renderProfile() {
+            document.getElementById('profileName').innerText = appData.profile.name;
+            document.getElementById('profileBio').innerText = appData.profile.bio;
+            
+            const imgElem = document.getElementById('profileImg');
+            imgElem.src = appData.profile.img;
+            imgElem.onerror = function() {
+                this.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80";
+            };
+        }
+
+        // Render Main Links
+        function renderLinks() {
+            const container = document.getElementById('linksContainer');
+            container.innerHTML = '';
+
+            if (appData.links.length === 0) {
+                container.innerHTML = `<div class="p-6 text-center text-xs opacity-60 glass-ios rounded-3xl">لا توجد روابط مضافة حالياً.</div>`;
+                return;
+            }
+
+            appData.links.forEach(link => {
+                const linkCard = document.createElement('a');
+                linkCard.href = link.url;
+                linkCard.target = "_blank";
+                linkCard.onclick = function() { trackClick(link.id); };
+                linkCard.className = `${appData.buttonStyle} w-full p-4 rounded-3xl flex items-center justify-between transition-all duration-300 group relative overflow-hidden`;
+
+                linkCard.innerHTML = `
+                    <div class="flex items-center gap-3.5 z-10">
+                        <div class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-lg flex-shrink-0 group-hover:scale-110 transition">
+                            <i class="${link.icon}"></i>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="font-extrabold text-xs sm:text-sm leading-snug">${escapeHtml(link.title)}</h3>
+                            ${link.subtitle ? `<p class="text-[11px] opacity-75 mt-0.5 font-normal">${escapeHtml(link.subtitle)}</p>` : ''}
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-2 z-10">
+                        <span class="text-[10px] font-bold px-2 py-1 rounded-full bg-black/20 opacity-80" title="عدد النقرات">
+                            <i class="fa-solid fa-arrow-pointer text-[9px] ml-0.5"></i> ${link.clicks}
+                        </span>
+                        <i class="fa-solid fa-chevron-left text-xs opacity-50 group-hover:-translate-x-1 transition"></i>
+                    </div>
+                `;
+
+                container.appendChild(linkCard);
+            });
+        }
+
+        // Track Click Counter
+        function trackClick(linkId) {
+            const link = appData.links.find(l => l.id === linkId);
+            if (link) {
+                link.clicks++;
+                renderLinks();
+                renderDashboardLinksList();
+            }
+        }
+
+        // Populate Dashboard Inputs
+        function populateFormInputs() {
+            document.getElementById('inputName').value = appData.profile.name;
+            document.getElementById('inputBio').value = appData.profile.bio;
+            document.getElementById('inputImg').value = appData.profile.img;
+        }
+
+        // Live Save Profile Changes
+        function saveAndRenderProfile() {
+            appData.profile.name = document.getElementById('inputName').value || "اسم المستخدم";
+            appData.profile.bio = document.getElementById('inputBio').value || "";
+            appData.profile.img = document.getElementById('inputImg').value || "";
+            renderProfile();
+        }
+
+        // Add New Link
+        function addLink() {
+            const title = document.getElementById('newTitle').value.trim();
+            const subtitle = document.getElementById('newSub').value.trim();
+            const url = document.getElementById('newUrl').value.trim();
+            const icon = document.getElementById('newIcon').value;
+
+            if (!title || !url) {
+                showToast("يرجى إدخال عنوان والرابط أولاً", "fa-triangle-exclamation", "text-amber-400");
+                return;
+            }
+
+            const newLink = {
+                id: Date.now(),
+                title: title,
+                subtitle: subtitle,
+                url: url.startsWith('http') ? url : 'https://' + url,
+                icon: icon,
+                clicks: 0
+            };
+
+            appData.links.push(newLink);
+
+            // Reset inputs
+            document.getElementById('newTitle').value = '';
+            document.getElementById('newSub').value = '';
+            document.getElementById('newUrl').value = '';
+
+            renderLinks();
+            renderDashboardLinksList();
+            showToast("تمت إضافة الرابط الجديد بنجاح");
+        }
+
+        // Delete Link
+        function deleteLink(id) {
+            appData.links = appData.links.filter(l => l.id !== id);
+            renderLinks();
+            renderDashboardLinksList();
+            showToast("تم حذف الرابط", "fa-trash", "text-red-400");
+        }
+
+        // Render Dashboard Links
+        function renderDashboardLinksList() {
+            const listContainer = document.getElementById('dashboardLinksList');
+            listContainer.innerHTML = '';
+
+            appData.links.forEach((link) => {
+                const item = document.createElement('div');
+                item.className = "flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10 text-xs";
+                item.innerHTML = `
+                    <div class="flex items-center gap-2.5 truncate">
+                        <i class="${link.icon} text-cyan-400"></i>
+                        <span class="font-bold truncate">${escapeHtml(link.title)}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] bg-black/40 px-2 py-1 rounded-lg text-slate-300 font-bold">${link.clicks} نقرة</span>
+                        <button onclick="deleteLink(${link.id})" class="p-1.5 text-red-400 hover:text-red-300 bg-red-950/40 rounded-xl">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        // Dashboard Drawer Control
+        function toggleDashboard() {
+            isDashboardOpen = !isDashboardOpen;
+            const modal = document.getElementById('dashboardModal');
+            const modalContent = modal.firstElementChild;
+
+            if (isDashboardOpen) {
+                renderDashboardLinksList();
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+                modalContent.classList.remove('translate-y-full');
+            } else {
+                modalContent.classList.add('translate-y-full');
+                setTimeout(() => {
+                    modal.classList.add('opacity-0', 'pointer-events-none');
+                    modal.classList.remove('opacity-100');
+                }, 300);
+            }
+        }
+
+        // Switch Dashboard Tabs
+        function switchTab(tabNum) {
+            [1, 2, 3].forEach(n => {
+                document.getElementById(`tabContent${n}`).classList.add('hidden');
+                document.getElementById(`tabBtn${n}`).className = "flex-1 py-2 rounded-xl text-slate-400 hover:text-white transition";
+            });
+
+            document.getElementById(`tabContent${tabNum}`).classList.remove('hidden');
+            document.getElementById(`tabBtn${tabNum}`).className = "flex-1 py-2 rounded-xl bg-white/20 text-white font-bold transition";
+        }
+
+        // Theme Setters
+        function setTheme(themeClass) {
+            appData.theme = themeClass;
+            document.body.className = `${themeClass} min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 relative select-none`;
+            showToast("تم تطبيق ثيم iOS جديد");
+        }
+
+        // Button Style Setters
+        function setButtonStyle(btnClass) {
+            appData.buttonStyle = btnClass;
+            renderLinks();
+            showToast("تم التحديث لنظرية التصميم المختارة");
+        }
+
+        // Share Profile Action
+        function shareProfile() {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            showToast("تم نسخ رابط صفحتك إلى الحافظة!");
+        }
+
+        // Toast Notification System
+        function showToast(msg, icon = "fa-circle-check", iconColor = "text-emerald-400") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = msg;
+            toastIcon.className = `fa-solid ${icon} ${iconColor}`;
+
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 2500);
+        }
+
+        // Utility: Escape HTML Output
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
